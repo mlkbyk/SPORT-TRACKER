@@ -15,23 +15,6 @@ Highlights
 
 ⚡ Lightweight and Fast Processing
 
-How to Get Started
-To set up the project on your machine:
-
-Ensure you have Python 3.10+ installed.
-
-Clone this repository.
-
-Install the necessary dependencies listed in requirements.txt.
-
-Run the application using:
-
-bash
-Kopyala
-Düzenle
-python main.py
-After starting, the application will open your webcam and start detecting your body movements instantly.
-
 Technologies Used
 MediaPipe — Pose estimation and tracking
 
@@ -60,22 +43,6 @@ MediaPipe, OpenCV ve Kivy kullanılarak geliştirilmiş, hafif, hızlı ve özel
 
 ⚡ Hafif ve Yüksek Performanslı
 
-Başlarken
-Projeyi çalıştırmak için:
-
-Python 3.10+ sürümünün yüklü olduğundan emin olun.
-
-Bu projeyi bilgisayarınıza klonlayın.
-
-requirements.txt dosyasındaki kütüphaneleri yükleyin.
-
-Uygulamayı aşağıdaki komutla başlatın:
-
-bash
-Kopyala
-Düzenle
-python main.py
-Başlattıktan sonra, uygulama kameranızı açacak ve vücut hareketlerinizi anlık olarak algılamaya başlayacaktır.
 
 Kullanılan Teknolojiler
 MediaPipe — Poz tahmini ve vücut takibi
