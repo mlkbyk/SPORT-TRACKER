@@ -1,7 +1,10 @@
-#left-arm-air-curl
+#sol kol ağırlık kaldrıma
+
 import cv2
 import mediapipe as mp
 import numpy as np
+import subprocess
+import os
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
@@ -31,8 +34,6 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             print("ERROR...")
             break
 
-
-
         # Convert image to RGB for Mediapipe processing
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         image.flags.writeable = False
@@ -51,8 +52,6 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             left_wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,
                           landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
 
-
-
             # Calculate angle for arm movement
             angle_move03 = calculateAngle(left_shoulder, left_elbow, left_wrist)
 
@@ -62,7 +61,6 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             if angle_move03 < 30 and stage == "down":
                 stage = "up"
                 counter += 1
-
 
         except Exception as e:
             print("Hata:", e)
@@ -79,6 +77,17 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         cv2.putText(image, f'Counter: {counter}', (30, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 100, 0), 2, cv2.LINE_AA)
         cv2.imshow('Mediapipe Feed', image)
+
+        if counter >= 15:  # Counter 15'e ulaşınca geçiş yap
+            print("Tebrikler! Hareketi tamamladınız. Geçiş yapılıyor...")
+            cap.release()
+            cv2.destroyAllWindows()
+            hareket_scripti = r"D:\\pyton-codes2\\mediapipe\\hareket1_gecis.py"
+            if os.path.exists(hareket_scripti):
+                subprocess.run(["python", hareket_scripti], check=True)
+            else:
+                print("Hata: hareket1_gecis.py dosyası bulunamadı!")
+            break
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
